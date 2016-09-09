@@ -19,12 +19,22 @@
     
     for (NSString *word in words)
     {
-        
-        NSString *otherLetters = [[[word stringByAppendingString:@"~"] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"bBcBdDfFgGhHjJkKlLmMnNpPqQrRsStTvVxXzZ"]] stringByReplacingOccurrencesOfString:@"~" withString:@""];
-        
-        NSString *consonants = [word stringByReplacingOccurrencesOfString:otherLetters withString:@""];
-        
-        pigLatin = [pigLatin stringByAppendingFormat:@"%@%@ay ", otherLetters, consonants];
+        if([word doubleValue] == 0 && ![word isEqualToString:@"0"])
+        {
+            NSString *word2 = [[word stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]] stringByAppendingString:@"~"];
+            
+            NSString *otherLetters = [word2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"bBcBdDfFgGhHjJkKlLmMnNpPqQrRsStTvVwWxXzZ"]];
+            
+            NSString *consonants = [word2 stringByReplacingOccurrencesOfString:otherLetters withString:@""];
+            
+            otherLetters = [otherLetters stringByReplacingOccurrencesOfString:@"~" withString:@""];
+            
+            pigLatin = [pigLatin stringByAppendingFormat:@"%@%@ay ", otherLetters, consonants];
+        }
+        else
+        {
+            pigLatin = [pigLatin stringByAppendingFormat:@"%@ ", word];
+        }
     }
     
     
