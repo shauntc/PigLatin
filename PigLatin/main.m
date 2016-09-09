@@ -7,11 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "InputCollector.h"
+#import "NSString+PigLatin.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        NSLog(@"Hello, World!");
+        
+        while (YES) {
+        
+        
+        NSString *userInput = [InputCollector inputForPrompt:@"What would you like to translate to Pig Latin?"];
+        
+        NSLog(@"%@",[userInput stringByPigLatinization ]);
+        
+        }
+        
+        
     }
     return 0;
 }
